@@ -88,6 +88,7 @@ show_access_info() {
     echo -e "${BLUE}🌐 Informações de Acesso:${NC}"
     echo -e "${GREEN}   Aplicação Web:${NC} http://localhost:3000"
     echo -e "${GREEN}   phpMyAdmin:${NC}    http://localhost:8080"
+    echo -e "${GREEN}   MySQL Port:${NC}     localhost:3306"
     echo -e "${GREEN}   Usuário MySQL:${NC} root"
     echo -e "${GREEN}   Senha MySQL:${NC}   password"
     echo ""

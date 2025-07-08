@@ -72,6 +72,7 @@ O projeto demonstra a separação de responsabilidades em camadas bem definidas:
    - **phpMyAdmin**: http://localhost:8080
      - Usuário: `root`
      - Senha: `password`
+   - **MySQL Port**: localhost:3306
 
 #### 🔧 Método Manual
 
@@ -91,6 +92,7 @@ O projeto demonstra a separação de responsabilidades em camadas bem definidas:
    - **phpMyAdmin**: http://localhost:8080
      - Usuário: `root`
      - Senha: `password`
+   - **MySQL Port**: localhost:3306
 
 ## 🛠️ Tecnologias Utilizadas
 
