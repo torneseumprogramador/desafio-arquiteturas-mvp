@@ -1,5 +1,8 @@
 # 🚀 Instruções Rápidas de Execução
 
+> **Projeto do curso Arquiteturas de Software Modernas**  
+> **Professor**: Danilo Aparecido - [Tornese um Programador](https://www.torneseumprogramador.com.br/cursos/arquiteturas_software)
+
 ## Pré-requisitos
 - Docker instalado
 - Docker Compose instalado
@@ -66,11 +69,17 @@ desafio-arquiteturas-mvp/
 
 ## Arquitetura MVP
 
-O projeto segue o padrão MVP (Model-View-Presenter):
-- **Model**: Entidades de negócio
-- **View**: Interface do usuário
-- **Presenter**: Lógica de apresentação
-- **Service**: Acesso a dados
+O projeto segue o padrão MVP (Model-View-Presenter) ensinado no curso de Arquiteturas de Software:
+- **Model**: Entidades de negócio (regras de domínio)
+- **View**: Interface do usuário (apresentação)
+- **Presenter**: Lógica de apresentação (coordenação)
+- **Service**: Acesso a dados (infraestrutura)
+
+### 🎓 Conceitos Aplicados
+- **Clean Architecture**: Separação clara de responsabilidades
+- **SOLID**: Princípios aplicados em toda a estrutura
+- **Containerização**: Docker para facilitar deploy
+- **Automação**: Scripts para gerenciamento
 
 ## Solução de Problemas
 
@@ -89,4 +98,15 @@ O projeto segue o padrão MVP (Model-View-Presenter):
 docker-compose down -v
 docker system prune -f
 docker-compose up --build
-``` 
+```
+
+---
+
+## 📚 Sobre o Curso
+
+Este projeto demonstra a aplicação prática dos conceitos do curso **Arquiteturas de Software Modernas** do [Tornese um Programador](https://www.torneseumprogramador.com.br/cursos/arquiteturas_software).
+
+**Professor**: Danilo Aparecido  
+**Plataforma**: [Tornese um Programador](https://www.torneseumprogramador.com.br)
+
+> 💡 **Dica**: Para aprofundar seus conhecimentos em arquiteturas de software, recomendamos o curso completo! 

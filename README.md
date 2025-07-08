@@ -2,14 +2,26 @@
 
 Sistema MVP para gerenciamento de produtos desenvolvido com arquitetura limpa e Docker.
 
+> **Projeto desenvolvido como parte do curso de Arquiteturas de Software Modernas**  
+> **Professor**: Danilo Aparecido  
+> **Plataforma**: [Tornese um Programador](https://www.torneseumprogramador.com.br/cursos/arquiteturas_software)
+
 ## 📋 Sobre o Projeto
 
-Este é um sistema MVP (Minimum Viable Product) para gerenciamento de produtos que implementa os princípios da arquitetura limpa, separando responsabilidades em camadas bem definidas:
+Este é um sistema MVP (Minimum Viable Product) para gerenciamento de produtos que implementa os princípios da **arquitetura limpa**, seguindo as melhores práticas ensinadas no curso de **Arquiteturas de Software Modernas** do [Tornese um Programador](https://www.torneseumprogramador.com.br/cursos/arquiteturas_software).
 
-- **Models**: Entidades de negócio
-- **Views**: Interface do usuário
-- **Presenters**: Lógica de apresentação
-- **Services**: Camada de acesso a dados
+O projeto demonstra a separação de responsabilidades em camadas bem definidas:
+
+- **Models**: Entidades de negócio (regras de domínio)
+- **Views**: Interface do usuário (apresentação)
+- **Presenters**: Lógica de apresentação (coordenação)
+- **Services**: Camada de acesso a dados (infraestrutura)
+
+### 🎯 Objetivos do Projeto
+- Demonstrar aplicação prática dos conceitos de arquitetura de software
+- Implementar padrão MVP (Model-View-Presenter) de forma eficiente
+- Utilizar containerização para facilitar deploy e desenvolvimento
+- Criar uma base sólida para evolução do sistema
 
 ## 🏗️ Arquitetura
 
@@ -120,6 +132,8 @@ Este é um sistema MVP (Minimum Viable Product) para gerenciamento de produtos q
 - **Inversão de Dependência**: Presenter não depende diretamente da View
 - **Testabilidade**: Estrutura facilita testes unitários
 - **Manutenibilidade**: Código organizado e bem estruturado
+- **Escalabilidade**: Arquitetura preparada para crescimento
+- **Clean Architecture**: Seguindo princípios de Robert C. Martin
 
 ## 🗄️ Estrutura do Banco de Dados
 
@@ -288,6 +302,15 @@ O projeto inclui um script `run.sh` que facilita o gerenciamento da aplicação:
 - [ ] Expandir funcionalidades do script run.sh
 - [ ] Adicionar backup automático do banco
 
+### 🎓 Aprendizados do Curso
+Este projeto demonstra a aplicação prática dos conceitos aprendidos no curso de **Arquiteturas de Software Modernas**:
+
+- **Padrões Arquiteturais**: MVP, Clean Architecture
+- **Princípios SOLID**: Aplicados em toda a estrutura
+- **Containerização**: Docker e Docker Compose
+- **Automação**: Scripts e CI/CD
+- **Boas Práticas**: Código limpo e organizado
+
 ### Funcionalidades Avançadas
 - [ ] Sistema de busca e filtros
 - [ ] Paginação de resultados
@@ -303,16 +326,63 @@ O projeto inclui um script `run.sh` que facilita o gerenciamento da aplicação:
 4. Push para a branch (`git push origin feature/AmazingFeature`)
 5. Abra um Pull Request
 
+## 🎓 Sobre o Curso
+
+Este projeto foi desenvolvido como parte do curso **Arquiteturas de Software Modernas** do [Tornese um Programador](https://www.torneseumprogramador.com.br/cursos/arquiteturas_software).
+
+### 📚 O que você aprenderá no curso:
+- **Fundamentos de Arquitetura**: Componentes, comunicação e organização
+- **Padrões Arquiteturais**: Monolitos, microsserviços, eventos
+- **Clean Architecture**: Princípios de Robert C. Martin
+- **SOLID e DDD**: Domain-Driven Design e princípios SOLID
+- **Ferramentas Modernas**: Docker, CI/CD, monitoramento
+- **Boas Práticas**: Código limpo e manutenível
+
+### 🔗 Links Úteis:
+- **Curso Completo**: [Arquiteturas de Software Modernas](https://www.torneseumprogramador.com.br/cursos/arquiteturas_software)
+- **Plataforma**: [Tornese um Programador](https://www.torneseumprogramador.com.br)
+- **Professor**: Danilo Aparecido
+
 ## 📄 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ## 👨‍💻 Autor
 
-**Seu Nome**
-- Email: seu.email@exemplo.com
-- LinkedIn: [Seu LinkedIn](https://linkedin.com/in/seu-perfil)
+**Danilo Aparecido**
+- **Professor e Desenvolvedor** especializado em Arquiteturas de Software
+- **Plataforma**: [Tornese um Programador](https://www.torneseumprogramador.com.br/cursos/arquiteturas_software)
+- **Especialidades**: Arquiteturas de Software Modernas, Padrões de Projeto, Clean Architecture
+- **Cursos**: Arquiteturas de Software, Desenvolvimento Web, Tecnologias Modernas
+
+### Sobre o Autor
+Danilo Aparecido é um professor e desenvolvedor experiente que dedica-se ao ensino de arquiteturas de software modernas. Através da plataforma [Tornese um Programador](https://www.torneseumprogramador.com.br/cursos/arquiteturas_software), oferece cursos especializados em:
+
+- **Fundamentos de Arquitetura**: componentes, comunicação e organização de camadas
+- **Padrões e Estilos**: monolitos, microsserviços, eventos e muito mais
+- **Boas práticas e Design**: SOLID, DDD e Clean Architecture
+- **Ferramentas e Deploy**: uso de containers, CI/CD e monitoramento
+
+### Curso de Arquiteturas de Software
+Este projeto MVP foi desenvolvido seguindo os princípios ensinados no curso de **Arquiteturas de Software Modernas** do [Tornese um Programador](https://www.torneseumprogramador.com.br/cursos/arquiteturas_software), aplicando:
+
+- ✅ **Padrão MVP** (Model-View-Presenter)
+- ✅ **Separação de Responsabilidades**
+- ✅ **Clean Architecture**
+- ✅ **Boas Práticas de Desenvolvimento**
+- ✅ **Containerização com Docker**
+- ✅ **Automação de Infraestrutura**
 
 ---
 
-⭐ Se este projeto te ajudou, considere dar uma estrela! 
+⭐ Se este projeto te ajudou, considere dar uma estrela!
+
+---
+
+## 📞 Contato e Suporte
+
+**Professor**: Danilo Aparecido  
+**Plataforma**: [Tornese um Programador](https://www.torneseumprogramador.com.br)  
+**Curso**: [Arquiteturas de Software Modernas](https://www.torneseumprogramador.com.br/cursos/arquiteturas_software)
+
+> 💡 **Dica**: Este projeto é um exemplo prático dos conceitos ensinados no curso. Para aprofundar seus conhecimentos em arquiteturas de software, recomendamos o curso completo! 

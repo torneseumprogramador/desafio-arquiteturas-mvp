@@ -1,7 +1,7 @@
 {
   "name": "gerenciador-produtos-mvp",
   "version": "1.0.0",
-  "description": "Sistema MVP para gerenciamento de produtos com arquitetura limpa",
+  "description": "Sistema MVP para gerenciamento de produtos com arquitetura limpa - Projeto do curso Arquiteturas de Software Modernas",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -13,9 +13,13 @@
     "produtos",
     "arquitetura-limpa",
     "nodejs",
-    "mysql"
+    "mysql",
+    "tornese-um-programador",
+    "danilo-aparecido",
+    "arquiteturas-software",
+    "clean-architecture"
   ],
-  "author": "Seu Nome",
+  "author": "Danilo Aparecido - Tornese um Programador",
   "license": "MIT",
   "dependencies": {
     "express": "^4.18.2",
