@@ -68,8 +68,8 @@ class Server {
             next();
         });
 
-        // Servir arquivos estáticos
-        this.app.use(express.static(path.join(__dirname, '../..')));
+        // Servir arquivos estáticos da pasta public
+        this.app.use(express.static(path.join(__dirname, '../public')));
     }
 
     setupRoutes() {
@@ -86,14 +86,18 @@ class Server {
         const produtoRoutes = new ProdutoRoutes(this.produtoService);
         this.app.use('/api/produtos', produtoRoutes.getRouter());
 
-        // Rota para servir o arquivo HTML
-        this.app.get('/', (req, res) => {
-            res.sendFile(path.join(__dirname, '../../index.html'));
-        });
-
-        // Rota para qualquer outra requisição (SPA)
-        this.app.get('*', (req, res) => {
-            res.sendFile(path.join(__dirname, '../../index.html'));
+        // SPA: catch-all para rotas que não sejam arquivos estáticos nem API
+        this.app.get('*', (req, res, next) => {
+            // Se for uma requisição para arquivo estático ou API, passa para o próximo
+            if (
+                req.path.startsWith('/api/') ||
+                req.path.startsWith('/mvp/') ||
+                req.path.startsWith('/node_modules/') ||
+                req.path.match(/\.(js|css|png|jpg|jpeg|svg|ico|txt)$/)
+            ) {
+                return next();
+            }
+            res.sendFile(path.join(__dirname, '../public/index.html'));
         });
     }
 

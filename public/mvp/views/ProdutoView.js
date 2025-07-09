@@ -58,7 +58,7 @@ class ProdutoView {
         div.className = 'produto-card';
         div.innerHTML = `
             <h3>${produto.nome}</h3>
-            <p><strong>Preço:</strong> R$ ${produto.preco.toFixed(2)}</p>
+            <p><strong>Preço:</strong> R$ ${Number(produto.preco).toFixed(2)}</p>
             <p><strong>Descrição:</strong> ${produto.descricao}</p>
             <p><strong>Quantidade:</strong> ${produto.quantidade}</p>
             <div class="produto-actions">
