@@ -27,16 +27,27 @@ O projeto demonstra a separação de responsabilidades em camadas bem definidas:
 
 ```
 .
-├── src/
-│   ├── domain/                    # Camada de Domínio
-│   │   ├── entities/             # Entidades de negócio
+├── mvp/                         # 🎯 MVP Frontend (Interface do Usuário)
+│   ├── models/
+│   │   └── Produto.js          # Modelo de dados do produto
+│   ├── views/
+│   │   └── ProdutoView.js      # Interface do usuário
+│   ├── presenters/
+│   │   └── ProdutoPresenter.js # Lógica de apresentação
+│   ├── services/
+│   │   └── ProdutoService.js   # Serviços de dados
+│   ├── app.js                  # Aplicação principal do MVP
+│   └── README.md               # Documentação do MVP
+├── src/                         # 🔧 API Backend (Clean Architecture)
+│   ├── domain/                  # Camada de Domínio
+│   │   ├── entities/           # Entidades de negócio
 │   │   │   └── Produto.js
-│   │   ├── repositories/         # Interfaces de repositório
+│   │   ├── repositories/       # Interfaces de repositório
 │   │   │   └── IProdutoRepository.js
-│   │   └── services/             # Regras de negócio
+│   │   └── services/           # Regras de negócio
 │   │       └── ProdutoService.js
-│   ├── application/              # Camada de Aplicação
-│   │   ├── usecases/            # Casos de uso específicos
+│   ├── application/            # Camada de Aplicação
+│   │   ├── usecases/          # Casos de uso específicos
 │   │   │   ├── ListarProdutosUseCase.js
 │   │   │   ├── CriarProdutoUseCase.js
 │   │   │   ├── AtualizarProdutoUseCase.js
@@ -44,26 +55,26 @@ O projeto demonstra a separação de responsabilidades em camadas bem definidas:
 │   │   │   ├── BuscarProdutoUseCase.js
 │   │   │   ├── GerenciarEstoqueUseCase.js
 │   │   │   └── ObterEstatisticasUseCase.js
-│   │   ├── controllers/         # Controladores HTTP
+│   │   ├── controllers/       # Controladores HTTP
 │   │   │   └── ProdutoController.js
-│   │   ├── routes/              # Definição de rotas
+│   │   ├── routes/            # Definição de rotas
 │   │   │   └── ProdutoRoutes.js
-│   │   └── middleware/          # Middlewares
+│   │   └── middleware/        # Middlewares
 │   │       └── ErrorHandler.js
-│   ├── infrastructure/           # Camada de Infraestrutura
-│   │   ├── database/            # Configuração e inicialização do banco
+│   ├── infrastructure/         # Camada de Infraestrutura
+│   │   ├── database/          # Configuração e inicialização do banco
 │   │   │   ├── MySQLConnection.js
 │   │   │   └── DatabaseInitializer.js
-│   │   └── repositories/        # Implementações concretas dos repositórios
+│   │   └── repositories/      # Implementações concretas dos repositórios
 │   │       └── MySQLProdutoRepository.js
-│   └── server.js                # Ponto de entrada da aplicação
-├── index.html                   # Interface principal
-├── app.js                       # Aplicação frontend
-├── docker-compose.yml           # Configuração Docker
-├── Dockerfile                   # Imagem Docker
-├── run.sh                       # Script de inicialização
-├── init.sql                     # Script de inicialização do banco
-└── README.md                    # Documentação
+│   └── server.js              # Ponto de entrada da API
+├── index.html                  # Interface principal
+├── docker-compose.yml          # Configuração Docker
+├── Dockerfile                  # Imagem Docker
+├── run.sh                      # Script de inicialização
+├── init.sql                    # Script de inicialização do banco
+├── package.json                # Dependências Node.js
+└── README.md                   # Documentação principal
 ```
 
 ## 🚀 Como Executar
@@ -115,19 +126,37 @@ O projeto demonstra a separação de responsabilidades em camadas bem definidas:
      - Senha: `password`
    - **MySQL Port**: localhost:3306
 
+## 🎯 Arquitetura do Projeto
+
+Este projeto está organizado em duas partes principais, cada uma com sua própria documentação:
+
+### 🎯 MVP Frontend (`/mvp`)
+- **Padrão MVP**: Model-View-Presenter implementado no frontend
+- **Interface do Usuário**: Interface completa para gerenciar produtos
+- **Comunicação com API**: Se conecta exclusivamente com a API backend
+- **Arquitetura Simples**: Focada na experiência do usuário
+- **📚 Documentação**: [`mvp/README.md`](mvp/README.md)
+
+### 🔧 API Backend (`/src`)
+- **Clean Architecture**: Arquitetura limpa no backend
+- **API REST**: Endpoints para comunicação com o frontend
+- **Banco de Dados**: Persistência em MySQL
+- **Arquitetura Profissional**: Preparada para escalabilidade
+- **📚 Documentação**: [`src/README.md`](src/README.md)
+
 ## 🛠️ Tecnologias Utilizadas
 
-### Frontend
+### Frontend (MVP)
 - **HTML5**: Estrutura da página
 - **CSS3**: Estilização moderna e responsiva
 - **JavaScript**: Lógica da aplicação
-- **Arquitetura MVP**: Padrão de arquitetura
+- **Padrão MVP**: Model-View-Presenter
 
-### Backend
+### Backend (API)
 - **Node.js**: Runtime JavaScript
 - **Express.js**: Framework web
 - **MySQL**: Banco de dados relacional
-- **Docker**: Containerização
+- **Clean Architecture**: Arquitetura limpa
 
 ### Infraestrutura
 - **Docker Compose**: Orquestração de containers
@@ -348,6 +377,41 @@ Este projeto demonstra a aplicação prática dos conceitos aprendidos no curso 
 3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
 4. Push para a branch (`git push origin feature/AmazingFeature`)
 5. Abra um Pull Request
+
+## 📚 Documentação do Projeto
+
+Este projeto possui documentação organizada por área:
+
+### 📖 Documentação Principal
+- **[README.md](README.md)** - Esta documentação geral do projeto
+
+### 🎯 Documentação do MVP Frontend
+- **[mvp/README.md](mvp/README.md)** - Documentação completa do MVP (Model-View-Presenter)
+  - Arquitetura MVP
+  - Funcionalidades da interface
+  - Como usar a aplicação
+  - Desenvolvimento e extensão
+
+### 🔧 Documentação da API Backend
+- **[src/README.md](src/README.md)** - Documentação completa da API (Clean Architecture)
+  - Arquitetura Clean Architecture
+  - Endpoints disponíveis
+  - Configuração e deploy
+  - Regras de negócio
+
+### 📋 Documentação da API REST
+- **[src/README.md](src/README.md)** - Documentação completa da API (inclui todos os endpoints)
+  - Todos os endpoints disponíveis
+  - Exemplos de requisições e respostas
+  - Códigos de status HTTP
+  - Estrutura de dados
+  - Validações e tratamento de erros
+
+### 🚀 Instruções de Execução
+- **[INSTRUCOES.md](INSTRUCOES.md)** - Guia rápido de execução
+  - Como executar o projeto
+  - Comandos úteis
+  - Solução de problemas
 
 ## 🎓 Sobre o Curso
 
