@@ -44,17 +44,43 @@ docker-compose up --build --force-recreate
 
 ```
 desafio-arquiteturas-mvp/
-├── models/Produto.js          # Modelo de dados
-├── views/ProdutoView.js       # Interface do usuário
-├── presenters/ProdutoPresenter.js # Lógica de apresentação
-├── services/ProdutoService.js # Serviços de dados
-├── index.html                 # Página principal
-├── app.js                     # Aplicação frontend
-├── server.js                  # Servidor backend
-├── docker-compose.yml         # Configuração Docker
-├── Dockerfile                 # Imagem Docker
-├── init.sql                   # Script de inicialização do banco
-└── package.json               # Dependências Node.js
+├── src/
+│   ├── domain/                    # Camada de Domínio
+│   │   ├── entities/             # Entidades de negócio
+│   │   │   └── Produto.js
+│   │   ├── repositories/         # Interfaces de repositório
+│   │   │   └── IProdutoRepository.js
+│   │   └── services/             # Regras de negócio
+│   │       └── ProdutoService.js
+│   ├── application/              # Camada de Aplicação
+│   │   ├── usecases/            # Casos de uso específicos
+│   │   │   ├── ListarProdutosUseCase.js
+│   │   │   ├── CriarProdutoUseCase.js
+│   │   │   ├── AtualizarProdutoUseCase.js
+│   │   │   ├── ExcluirProdutoUseCase.js
+│   │   │   ├── BuscarProdutoUseCase.js
+│   │   │   ├── GerenciarEstoqueUseCase.js
+│   │   │   └── ObterEstatisticasUseCase.js
+│   │   ├── controllers/         # Controladores HTTP
+│   │   │   └── ProdutoController.js
+│   │   ├── routes/              # Definição de rotas
+│   │   │   └── ProdutoRoutes.js
+│   │   └── middleware/          # Middlewares
+│   │       └── ErrorHandler.js
+│   ├── infrastructure/           # Camada de Infraestrutura
+│   │   ├── database/            # Configuração e inicialização do banco
+│   │   │   ├── MySQLConnection.js
+│   │   │   └── DatabaseInitializer.js
+│   │   └── repositories/        # Implementações concretas dos repositórios
+│   │       └── MySQLProdutoRepository.js
+│   └── server.js                # Ponto de entrada da aplicação
+├── index.html                   # Página principal
+├── app.js                       # Aplicação frontend
+├── docker-compose.yml           # Configuração Docker
+├── Dockerfile                   # Imagem Docker
+├── init.sql                     # Script de inicialização do banco
+├── package.json                 # Dependências Node.js
+└── run.sh                       # Script de gerenciamento
 ```
 
 ## Funcionalidades
@@ -67,13 +93,21 @@ desafio-arquiteturas-mvp/
 - ✅ Persistência em MySQL
 - ✅ API REST completa
 
-## Arquitetura MVP
+## Arquitetura Clean Architecture
 
-O projeto segue o padrão MVP (Model-View-Presenter) ensinado no curso de Arquiteturas de Software:
-- **Model**: Entidades de negócio (regras de domínio)
-- **View**: Interface do usuário (apresentação)
-- **Presenter**: Lógica de apresentação (coordenação)
-- **Service**: Acesso a dados (infraestrutura)
+O projeto segue os princípios da Clean Architecture, organizando o código em camadas bem definidas:
+
+### 🏗️ Camadas da Arquitetura
+
+- **Domain**: Entidades de negócio e interfaces (regras de domínio)
+- **Application**: Casos de uso, controladores, rotas e middlewares
+- **Infrastructure**: Implementações concretas (banco de dados, frameworks)
+
+### 📋 Responsabilidades
+
+- **Domain**: Contém as regras de negócio puras, entidades e serviços de domínio
+- **Application**: Contém casos de uso específicos da aplicação e comunicação HTTP
+- **Infrastructure**: Implementa as interfaces definidas no domínio
 
 ### 🎓 Conceitos Aplicados
 - **Clean Architecture**: Separação clara de responsabilidades
