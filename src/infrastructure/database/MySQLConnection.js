@@ -8,35 +8,44 @@ class MySQLConnection {
             port: process.env.DB_PORT || 3306,
             user: process.env.DB_USER || 'root',
             password: process.env.DB_PASSWORD || 'password',
-            database: process.env.DB_NAME || 'produtos_db',
-            waitForConnections: true,
-            connectionLimit: 10,
-            queueLimit: 0,
-            acquireTimeout: 60000,
-            timeout: 60000,
-            reconnect: true
+            database: process.env.DB_NAME || 'produtos_db'
         };
     }
 
     async connect() {
-        try {
-            // Primeiro, conectar sem especificar o banco para criá-lo se não existir
-            const tempConfig = { ...this.config };
-            delete tempConfig.database;
-            
-            const tempConnection = await mysql.createConnection(tempConfig);
-            
-            // Criar banco de dados se não existir
-            await tempConnection.execute(`CREATE DATABASE IF NOT EXISTS ${this.config.database}`);
-            await tempConnection.end();
-            
-            // Conectar ao banco específico
-            this.connection = await mysql.createConnection(this.config);
-            
-            console.log('✅ Conectado ao MySQL com sucesso');
-        } catch (error) {
-            console.error('❌ Erro ao conectar ao MySQL:', error);
-            throw error;
+        const maxRetries = 30;
+        const retryDelay = 2000; // 2 segundos
+        
+        for (let attempt = 1; attempt <= maxRetries; attempt++) {
+            try {
+                console.log(`🔄 Tentativa ${attempt}/${maxRetries} de conectar ao MySQL...`);
+                
+                // Primeiro, conectar sem especificar o banco para criá-lo se não existir
+                const tempConfig = { ...this.config };
+                delete tempConfig.database;
+                
+                const tempConnection = await mysql.createConnection(tempConfig);
+                
+                // Criar banco de dados se não existir
+                await tempConnection.execute(`CREATE DATABASE IF NOT EXISTS ${this.config.database}`);
+                await tempConnection.end();
+                
+                // Conectar ao banco específico
+                this.connection = await mysql.createConnection(this.config);
+                
+                console.log('✅ Conectado ao MySQL com sucesso');
+                return;
+            } catch (error) {
+                console.log(`❌ Tentativa ${attempt} falhou: ${error.message}`);
+                
+                if (attempt === maxRetries) {
+                    console.error('❌ Erro ao conectar ao MySQL após todas as tentativas:', error);
+                    throw error;
+                }
+                
+                // Aguardar antes da próxima tentativa
+                await new Promise(resolve => setTimeout(resolve, retryDelay));
+            }
         }
     }
 

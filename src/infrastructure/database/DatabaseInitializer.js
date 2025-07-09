@@ -39,13 +39,16 @@ class DatabaseInitializer {
 
     static async insertSampleDataIfEmpty() {
         try {
-            const [rows] = await mysqlConnection.execute('SELECT COUNT(*) as count FROM produtos');
-            
-            if (rows[0].count === 0) {
+            const rows = await mysqlConnection.execute('SELECT COUNT(*) as count FROM produtos');
+            console.log('[DEBUG] Resultado do COUNT:', rows);
+            if (Array.isArray(rows) && rows.length > 0 && rows[0].count === 0) {
                 await this.insertSampleData();
                 console.log('✅ Dados de exemplo inseridos');
-            } else {
+            } else if (Array.isArray(rows) && rows.length > 0) {
                 console.log('ℹ️  Tabela já contém dados, pulando inserção de exemplo');
+            } else {
+                console.error('❌ Retorno inesperado do COUNT:', rows);
+                throw new Error('Retorno inesperado do COUNT');
             }
         } catch (error) {
             console.error('❌ Erro ao verificar/inserir dados de exemplo:', error);
