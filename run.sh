@@ -105,6 +105,12 @@ show_logs() {
     docker-compose logs -f
 }
 
+# Função para mostrar logs sem follow (snapshot)
+show_logs_snapshot() {
+    print_message "Mostrando logs da aplicação (snapshot)..."
+    docker-compose logs
+}
+
 # Função para parar a aplicação
 stop_application() {
     print_message "Parando a aplicação..."
@@ -151,6 +157,7 @@ show_help() {
     echo -e "${GREEN}  stop${NC}      - Parar a aplicação"
     echo -e "${GREEN}  restart${NC}   - Reiniciar a aplicação"
     echo -e "${GREEN}  logs${NC}      - Mostrar logs em tempo real"
+    echo -e "${GREEN}  logs-snapshot${NC} - Mostrar logs (snapshot)"
     echo -e "${GREEN}  status${NC}    - Mostrar status dos containers"
     echo -e "${GREEN}  clean${NC}     - Limpar containers e volumes"
     echo -e "${GREEN}  help${NC}      - Mostrar esta ajuda"
@@ -183,6 +190,9 @@ main() {
             ;;
         "logs")
             show_logs
+            ;;
+        "logs-snapshot")
+            show_logs_snapshot
             ;;
         "status")
             show_status
