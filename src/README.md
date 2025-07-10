@@ -58,6 +58,7 @@ Infrastructure → Application → Domain
 ### ✅ Endpoints Implementados
 
 #### 📦 CRUD de Produtos
+
 - `GET /api/produtos` - Listar todos os produtos
 - `GET /api/produtos/:id` - Buscar produto por ID
 - `POST /api/produtos` - Criar novo produto
@@ -65,17 +66,21 @@ Infrastructure → Application → Domain
 - `DELETE /api/produtos/:id` - Excluir produto
 
 #### 🔍 Busca e Filtros
+
 - `GET /api/produtos/buscar/nome?nome=termo` - Buscar por nome
 - `GET /api/produtos/buscar/preco?min=100&max=500` - Buscar por faixa de preço
 
 #### 🛠️ Operações de Negócio
+
 - `PATCH /api/produtos/:id/estoque` - Atualizar estoque
 - `PATCH /api/produtos/:id/desconto` - Aplicar desconto
 
 #### 📊 Relatórios
+
 - `GET /api/produtos/estatisticas` - Obter estatísticas
 
 #### 🏥 Health Check
+
 - `GET /health` - Verificar status da API
 
 ### 🎯 Regras de Negócio Implementadas
@@ -89,12 +94,14 @@ Infrastructure → Application → Domain
 ## 🛠️ Tecnologias Utilizadas
 
 ### Backend
+
 - **Node.js**: Runtime JavaScript
 - **Express.js**: Framework web
 - **MySQL**: Banco de dados relacional
 - **Docker**: Containerização
 
 ### Arquitetura
+
 - **Clean Architecture**: Separação de responsabilidades
 - **SOLID**: Princípios aplicados
 - **Dependency Injection**: Inversão de dependências
@@ -103,6 +110,7 @@ Infrastructure → Application → Domain
 ## 🗄️ Banco de Dados
 
 ### Tabela `produtos`
+
 ```sql
 CREATE TABLE produtos (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -116,6 +124,7 @@ CREATE TABLE produtos (
 ```
 
 ### Configuração
+
 - **Host**: `mysql` (Docker) ou `localhost` (desenvolvimento)
 - **Porta**: `3306`
 - **Usuário**: `root`
@@ -125,6 +134,7 @@ CREATE TABLE produtos (
 ## 🔧 Configuração de Desenvolvimento
 
 ### Variáveis de Ambiente
+
 ```env
 # Configurações do Servidor
 PORT=3000
@@ -160,11 +170,12 @@ npm test
 ## 📊 Estrutura de Respostas
 
 ### Sucesso
+
 ```json
 {
   "id": 1,
   "nome": "Produto Exemplo",
-  "preco": 99.90,
+  "preco": 99.9,
   "descricao": "Descrição do produto",
   "quantidade": 10,
   "created_at": "2024-01-15T10:30:00.000Z",
@@ -173,6 +184,7 @@ npm test
 ```
 
 ### Erro
+
 ```json
 {
   "error": "Tipo de erro",
@@ -183,11 +195,13 @@ npm test
 ## 🔍 Logs e Monitoramento
 
 ### Logs da Aplicação
+
 - **Console**: Logs detalhados em desenvolvimento
 - **Arquivo**: Logs estruturados em produção
 - **Níveis**: INFO, WARN, ERROR, DEBUG
 
 ### Health Check
+
 ```json
 {
   "status": "OK",
@@ -201,6 +215,7 @@ npm test
 ## 🧪 Testes
 
 ### Estrutura de Testes
+
 ```
 tests/
 ├── unit/              # Testes unitários
@@ -209,6 +224,7 @@ tests/
 ```
 
 ### Executar Testes
+
 ```bash
 # Testes unitários
 npm run test:unit
@@ -223,6 +239,7 @@ npm run test
 ## 🚀 Deploy
 
 ### Docker
+
 ```bash
 # Construir imagem
 docker build -t gerenciador-produtos-api .
@@ -232,6 +249,7 @@ docker run -p 3000:3000 gerenciador-produtos-api
 ```
 
 ### Docker Compose
+
 ```bash
 # Executar com banco de dados
 docker-compose up --build
@@ -240,31 +258,34 @@ docker-compose up --build
 ## 📚 Documentação Completa da API
 
 ### 🌐 Base URL
+
 ```
 http://localhost:3000/api
 ```
 
 ### 📋 Códigos de Status HTTP
 
-| Código | Descrição |
-|--------|-----------|
-| 200 | OK - Requisição bem-sucedida |
-| 201 | Created - Recurso criado com sucesso |
-| 400 | Bad Request - Dados inválidos |
-| 404 | Not Found - Recurso não encontrado |
-| 409 | Conflict - Conflito de dados |
-| 500 | Internal Server Error - Erro interno do servidor |
+| Código | Descrição                                        |
+| ------ | ------------------------------------------------ |
+| 200    | OK - Requisição bem-sucedida                     |
+| 201    | Created - Recurso criado com sucesso             |
+| 400    | Bad Request - Dados inválidos                    |
+| 404    | Not Found - Recurso não encontrado               |
+| 409    | Conflict - Conflito de dados                     |
+| 500    | Internal Server Error - Erro interno do servidor |
 
 ### 🔍 Endpoints Detalhados
 
 #### 📦 CRUD de Produtos
 
 ##### Listar todos os produtos
+
 ```http
 GET /api/produtos
 ```
 
 **Resposta:**
+
 ```json
 [
   {
@@ -280,14 +301,17 @@ GET /api/produtos
 ```
 
 ##### Buscar produto por ID
+
 ```http
 GET /api/produtos/{id}
 ```
 
 **Parâmetros:**
+
 - `id` (number): ID do produto
 
 **Resposta:**
+
 ```json
 {
   "id": 1,
@@ -301,26 +325,29 @@ GET /api/produtos/{id}
 ```
 
 ##### Criar novo produto
+
 ```http
 POST /api/produtos
 ```
 
 **Body:**
+
 ```json
 {
   "nome": "Novo Produto",
-  "preco": 99.90,
+  "preco": 99.9,
   "descricao": "Descrição do produto",
   "quantidade": 10
 }
 ```
 
 **Resposta:**
+
 ```json
 {
   "id": 9,
   "nome": "Novo Produto",
-  "preco": 99.90,
+  "preco": 99.9,
   "descricao": "Descrição do produto",
   "quantidade": 10,
   "created_at": "2024-01-15T10:30:00.000Z",
@@ -329,32 +356,38 @@ POST /api/produtos
 ```
 
 ##### Atualizar produto
+
 ```http
 PUT /api/produtos/{id}
 ```
 
 **Parâmetros:**
+
 - `id` (number): ID do produto
 
 **Body:**
+
 ```json
 {
   "nome": "Produto Atualizado",
-  "preco": 149.90,
+  "preco": 149.9,
   "descricao": "Nova descrição",
   "quantidade": 15
 }
 ```
 
 ##### Excluir produto
+
 ```http
 DELETE /api/produtos/{id}
 ```
 
 **Parâmetros:**
+
 - `id` (number): ID do produto
 
 **Resposta:**
+
 ```json
 {
   "message": "Produto excluído com sucesso"
@@ -364,33 +397,40 @@ DELETE /api/produtos/{id}
 #### 🔍 Busca e Filtros
 
 ##### Buscar produtos por nome
+
 ```http
 GET /api/produtos/busca/nome?nome=notebook
 ```
 
 **Parâmetros:**
+
 - `nome` (string): Nome ou parte do nome do produto
 
 ##### Buscar produtos por preço
+
 ```http
 GET /api/produtos/busca/preco?min=100&max=500
 ```
 
 **Parâmetros:**
+
 - `min` (number): Preço mínimo
 - `max` (number): Preço máximo
 
 #### 🛠️ Operações de Negócio
 
 ##### Atualizar estoque
+
 ```http
 PATCH /api/produtos/{id}/estoque
 ```
 
 **Parâmetros:**
+
 - `id` (number): ID do produto
 
 **Body:**
+
 ```json
 {
   "quantidade": 5
@@ -398,14 +438,17 @@ PATCH /api/produtos/{id}/estoque
 ```
 
 ##### Aplicar desconto
+
 ```http
 PATCH /api/produtos/{id}/desconto
 ```
 
 **Parâmetros:**
+
 - `id` (number): ID do produto
 
 **Body:**
+
 ```json
 {
   "percentual": 10
@@ -415,11 +458,13 @@ PATCH /api/produtos/{id}/desconto
 #### 📊 Relatórios
 
 ##### Obter estatísticas
+
 ```http
 GET /api/produtos/relatorios/estatisticas
 ```
 
 **Resposta:**
+
 ```json
 {
   "total": 8,
@@ -433,11 +478,13 @@ GET /api/produtos/relatorios/estatisticas
 #### 🏥 Health Check
 
 ##### Verificar status da API
+
 ```http
 GET /health
 ```
 
 **Resposta:**
+
 ```json
 {
   "status": "OK",
@@ -451,11 +498,13 @@ GET /health
 #### cURL
 
 ##### Listar produtos
+
 ```bash
 curl http://localhost:3000/api/produtos
 ```
 
 ##### Criar produto
+
 ```bash
 curl -X POST http://localhost:3000/api/produtos \
   -H "Content-Type: application/json" \
@@ -468,6 +517,7 @@ curl -X POST http://localhost:3000/api/produtos \
 ```
 
 ##### Atualizar produto
+
 ```bash
 curl -X PUT http://localhost:3000/api/produtos/1 \
   -H "Content-Type: application/json" \
@@ -478,6 +528,7 @@ curl -X PUT http://localhost:3000/api/produtos/1 \
 ```
 
 ##### Excluir produto
+
 ```bash
 curl -X DELETE http://localhost:3000/api/produtos/1
 ```
@@ -485,33 +536,36 @@ curl -X DELETE http://localhost:3000/api/produtos/1
 #### JavaScript (Fetch)
 
 ##### Listar produtos
+
 ```javascript
-fetch('http://localhost:3000/api/produtos')
-  .then(response => response.json())
-  .then(data => console.log(data));
+fetch("http://localhost:3000/api/produtos")
+  .then((response) => response.json())
+  .then((data) => console.log(data));
 ```
 
 ##### Criar produto
+
 ```javascript
-fetch('http://localhost:3000/api/produtos', {
-  method: 'POST',
+fetch("http://localhost:3000/api/produtos", {
+  method: "POST",
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    nome: 'Novo Produto',
-    preco: 99.90,
-    descricao: 'Descrição do produto',
-    quantidade: 10
-  })
+    nome: "Novo Produto",
+    preco: 99.9,
+    descricao: "Descrição do produto",
+    quantidade: 10,
+  }),
 })
-.then(response => response.json())
-.then(data => console.log(data));
+  .then((response) => response.json())
+  .then((data) => console.log(data));
 ```
 
 ### 🚨 Tratamento de Erros
 
 #### Formato de Erro
+
 ```json
 {
   "error": "Tipo do erro",
@@ -522,6 +576,7 @@ fetch('http://localhost:3000/api/produtos', {
 #### Exemplos de Erros
 
 ##### Produto não encontrado
+
 ```json
 {
   "error": "Produto não encontrado",
@@ -530,6 +585,7 @@ fetch('http://localhost:3000/api/produtos', {
 ```
 
 ##### Dados inválidos
+
 ```json
 {
   "error": "Dados inválidos",
@@ -538,6 +594,7 @@ fetch('http://localhost:3000/api/produtos', {
 ```
 
 ##### Parâmetros obrigatórios
+
 ```json
 {
   "error": "Parâmetros obrigatórios",
@@ -548,21 +605,25 @@ fetch('http://localhost:3000/api/produtos', {
 ### 🔒 Validações
 
 #### Produto
+
 - **nome**: Obrigatório, máximo 255 caracteres
 - **preco**: Obrigatório, deve ser maior que zero
 - **quantidade**: Obrigatório, não pode ser negativo
 - **descricao**: Opcional
 
 #### Busca por Preço
+
 - **min**: Obrigatório, não pode ser negativo
 - **max**: Obrigatório, não pode ser negativo
 - **min** não pode ser maior que **max**
 
 #### Atualização de Estoque
+
 - **quantidade**: Obrigatório
 - Não pode resultar em estoque negativo
 
 #### Aplicação de Desconto
+
 - **percentual**: Obrigatório
 - Deve estar entre 0 e 100
 
@@ -580,12 +641,14 @@ A API está na versão 1.0. Mudanças futuras serão versionadas adequadamente.
 ## 🎓 Conceitos Aplicados
 
 ### Clean Architecture
+
 - **Independência de Frameworks**: Domain não depende de Express
 - **Testabilidade**: Cada camada pode ser testada independentemente
 - **Independência de UI**: Lógica de negócio separada da interface
 - **Independência de Banco**: Interfaces abstraem implementações
 
 ### SOLID
+
 - **S**: Single Responsibility Principle
 - **O**: Open/Closed Principle
 - **L**: Liskov Substitution Principle
@@ -595,6 +658,7 @@ A API está na versão 1.0. Mudanças futuras serão versionadas adequadamente.
 ## 🔗 Integração com Frontend
 
 A API é consumida pelo MVP Frontend (`/mvp`):
+
 - **Comunicação**: REST API via HTTP
 - **Formato**: JSON
 - **CORS**: Configurado para permitir requisições do frontend
@@ -605,4 +669,4 @@ A API é consumida pelo MVP Frontend (`/mvp`):
 Esta API demonstra a aplicação prática dos conceitos do curso **Arquiteturas de Software Modernas** do [Tornese um Programador](https://www.torneseumprogramador.com.br/cursos/arquiteturas_software).
 
 **Professor**: Danilo Aparecido  
-**Plataforma**: [Tornese um Programador](https://www.torneseumprogramador.com.br) 
+**Plataforma**: [Tornese um Programador](https://www.torneseumprogramador.com.br)

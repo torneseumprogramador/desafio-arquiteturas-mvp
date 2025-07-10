@@ -5,14 +5,17 @@ Este diretório contém scripts shell para facilitar a execução dos testes do 
 ## Scripts Disponíveis
 
 ### 1. `test-all.sh` - Script Unificado
+
 Executa todos os testes do projeto (frontend + backend) com diferentes opções.
 
 **Uso:**
+
 ```bash
 ./scripts/test-all.sh [opção]
 ```
 
 **Opções:**
+
 - `all` - Executa TODOS os testes (frontend + backend) - **padrão**
 - `frontend` - Executa apenas testes do frontend
 - `backend` - Executa apenas testes do backend
@@ -24,6 +27,7 @@ Executa todos os testes do projeto (frontend + backend) com diferentes opções.
 - `help` - Mostra ajuda
 
 **Exemplos:**
+
 ```bash
 ./scripts/test-all.sh          # Executa todos os testes
 ./scripts/test-all.sh frontend # Apenas frontend
@@ -33,14 +37,17 @@ Executa todos os testes do projeto (frontend + backend) com diferentes opções.
 ```
 
 ### 2. `test-frontend.sh` - Testes do Frontend
+
 Executa testes específicos do frontend MVP.
 
 **Uso:**
+
 ```bash
 ./scripts/test-frontend.sh [opção]
 ```
 
 **Opções:**
+
 - `all` - Executa todos os testes com cobertura - **padrão**
 - `watch` - Executa testes em modo watch
 - `coverage` - Executa testes com relatório de cobertura
@@ -52,6 +59,7 @@ Executa testes específicos do frontend MVP.
 - `help` - Mostra ajuda
 
 **Exemplos:**
+
 ```bash
 ./scripts/test-frontend.sh all      # Todos os testes
 ./scripts/test-frontend.sh model    # Apenas Model
@@ -59,14 +67,17 @@ Executa testes específicos do frontend MVP.
 ```
 
 ### 3. `test-backend.sh` - Testes do Backend
+
 Executa testes específicos do backend API.
 
 **Uso:**
+
 ```bash
 ./scripts/test-backend.sh [opção]
 ```
 
 **Opções:**
+
 - `all` - Executa todos os testes com cobertura - **padrão**
 - `watch` - Executa testes em modo watch
 - `coverage` - Executa testes com relatório de cobertura
@@ -82,6 +93,7 @@ Executa testes específicos do backend API.
 - `help` - Mostra ajuda
 
 **Exemplos:**
+
 ```bash
 ./scripts/test-backend.sh all           # Todos os testes
 ./scripts/test-backend.sh domain        # Apenas Domain
@@ -92,6 +104,7 @@ Executa testes específicos do backend API.
 ## Estrutura de Testes
 
 ### Frontend (MVP)
+
 ```
 public/mvp/tests/
 ├── model/
@@ -105,6 +118,7 @@ public/mvp/tests/
 ```
 
 ### Backend (Clean Architecture)
+
 ```
 tests/
 ├── domain/
@@ -137,12 +151,14 @@ tests/
 ## Cobertura de Testes
 
 ### Frontend
+
 - **Model**: 100% de cobertura
 - **Service**: 100% de cobertura
 - **View**: 100% de cobertura
 - **Presenter**: 100% de cobertura
 
 ### Backend
+
 - **Domain**: 100% de cobertura
 - **Application**: ~75% de cobertura
 - **Infrastructure**: Cobertura parcial
@@ -166,6 +182,7 @@ Para integração contínua, use o modo CI:
 ```
 
 Este modo:
+
 - Remove cores do output
 - Gera relatórios JSON
 - É ideal para pipelines de CI/CD
@@ -185,13 +202,16 @@ Os scripts utilizam o arquivo `jest.config.js` na raiz do projeto para configura
 ## Troubleshooting
 
 ### Erro: "npx não encontrado"
+
 - Instale o Node.js: https://nodejs.org/
 
 ### Erro: "jest.config.js não encontrado"
+
 - Verifique se está no diretório raiz do projeto
 - Execute: `ls jest.config.js`
 
 ### Testes falhando
+
 - Verifique se todas as dependências estão instaladas: `npm install`
 - Execute os testes individualmente para identificar o problema
-- Verifique os logs de erro detalhados 
+- Verifique os logs de erro detalhados

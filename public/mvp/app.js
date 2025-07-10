@@ -3,102 +3,105 @@
  * Coordena a inicialização e funcionamento do sistema
  */
 class App {
-    constructor() {
-        this.produtoView = null;
-        this.produtoService = null;
-        this.produtoPresenter = null;
+  constructor() {
+    this.produtoView = null;
+    this.produtoService = null;
+    this.produtoPresenter = null;
+  }
+
+  /**
+   * Inicializa a aplicação
+   */
+  async inicializar() {
+    try {
+      console.log("🚀 Inicializando MVP...");
+
+      // Inicializar componentes
+      this.produtoView = new ProdutoView();
+      this.produtoService = new ProdutoService();
+      this.produtoPresenter = new ProdutoPresenter(
+        this.produtoView,
+        this.produtoService,
+      );
+
+      // Inicializar presenter
+      await this.produtoPresenter.inicializar();
+
+      console.log("✅ MVP inicializado com sucesso!");
+    } catch (error) {
+      console.error("❌ Erro ao inicializar MVP:", error);
+      this.mostrarErro("Erro ao inicializar aplicação: " + error.message);
     }
+  }
 
-    /**
-     * Inicializa a aplicação
-     */
-    async inicializar() {
-        try {
-            console.log('🚀 Inicializando MVP...');
-            
-            // Inicializar componentes
-            this.produtoView = new ProdutoView();
-            this.produtoService = new ProdutoService();
-            this.produtoPresenter = new ProdutoPresenter(this.produtoView, this.produtoService);
-
-            // Inicializar presenter
-            await this.produtoPresenter.inicializar();
-
-            console.log('✅ MVP inicializado com sucesso!');
-        } catch (error) {
-            console.error('❌ Erro ao inicializar MVP:', error);
-            this.mostrarErro('Erro ao inicializar aplicação: ' + error.message);
-        }
+  /**
+   * Inicia a edição de um produto
+   * @param {number} id - ID do produto
+   */
+  editarProduto(id) {
+    if (this.produtoPresenter) {
+      this.produtoPresenter.editarProduto(id);
     }
+  }
 
-    /**
-     * Inicia a edição de um produto
-     * @param {number} id - ID do produto
-     */
-    editarProduto(id) {
-        if (this.produtoPresenter) {
-            this.produtoPresenter.editarProduto(id);
-        }
+  /**
+   * Exclui um produto
+   * @param {number} id - ID do produto
+   */
+  excluirProduto(id) {
+    if (this.produtoPresenter) {
+      this.produtoPresenter.excluirProduto(id);
     }
+  }
 
-    /**
-     * Exclui um produto
-     * @param {number} id - ID do produto
-     */
-    excluirProduto(id) {
-        if (this.produtoPresenter) {
-            this.produtoPresenter.excluirProduto(id);
-        }
+  /**
+   * Cancela a edição de um produto
+   */
+  cancelarEdicao() {
+    if (this.produtoPresenter) {
+      this.produtoPresenter.cancelarEdicao();
     }
+  }
 
-    /**
-     * Cancela a edição de um produto
-     */
-    cancelarEdicao() {
-        if (this.produtoPresenter) {
-            this.produtoPresenter.cancelarEdicao();
-        }
-    }
+  /**
+   * Exibe uma mensagem de erro
+   * @param {string} mensagem - Mensagem de erro
+   */
+  mostrarErro(mensagem) {
+    const alertDiv = document.createElement("div");
+    alertDiv.className = "alert alert-error";
+    alertDiv.textContent = mensagem;
 
-    /**
-     * Exibe uma mensagem de erro
-     * @param {string} mensagem - Mensagem de erro
-     */
-    mostrarErro(mensagem) {
-        const alertDiv = document.createElement('div');
-        alertDiv.className = 'alert alert-error';
-        alertDiv.textContent = mensagem;
-        
-        document.body.insertBefore(alertDiv, document.body.firstChild);
-        
-        setTimeout(() => {
-            alertDiv.remove();
-        }, 5000);
-    }
+    document.body.insertBefore(alertDiv, document.body.firstChild);
+
+    setTimeout(() => {
+      alertDiv.remove();
+    }, 5000);
+  }
 }
 
 // Instância global da aplicação
 const app = new App();
 
 // Inicializar quando o DOM estiver pronto
-document.addEventListener('DOMContentLoaded', () => {
-    app.inicializar();
+document.addEventListener("DOMContentLoaded", () => {
+  app.inicializar();
 });
 
 // Exportar para uso global
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = app;
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = app;
 } else {
-    window.app = app;
+  window.app = app;
 }
 
 // Modal de confirmação customizado
 function showConfirmModal(message, onConfirm) {
-    let modal = document.getElementById('custom-confirm-modal');
-    if (!modal) {
-        modal = document.createElement('div');
-        modal.id = 'custom-confirm-modal';
-        modal.innerHTML = `
+  let modal = document.getElementById("custom-confirm-modal");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "custom-confirm-modal";
+    modal.innerHTML = `
             <div class="modal-backdrop"></div>
             <div class="modal-content">
                 <p id="custom-confirm-message"></p>
@@ -108,24 +111,24 @@ function showConfirmModal(message, onConfirm) {
                 </div>
             </div>
         `;
-        document.body.appendChild(modal);
-    }
-    document.getElementById('custom-confirm-message').textContent = message;
-    modal.style.display = 'flex';
-    // Eventos
-    document.getElementById('custom-confirm-cancel').onclick = () => {
-        modal.style.display = 'none';
-    };
-    document.getElementById('custom-confirm-ok').onclick = () => {
-        modal.style.display = 'none';
-        if (typeof onConfirm === 'function') onConfirm();
-    };
+    document.body.appendChild(modal);
+  }
+  document.getElementById("custom-confirm-message").textContent = message;
+  modal.style.display = "flex";
+  // Eventos
+  document.getElementById("custom-confirm-cancel").onclick = () => {
+    modal.style.display = "none";
+  };
+  document.getElementById("custom-confirm-ok").onclick = () => {
+    modal.style.display = "none";
+    if (typeof onConfirm === "function") onConfirm();
+  };
 }
 
 // Adiciona estilos do modal customizado
 (function addCustomModalStyles() {
-    const style = document.createElement('style');
-    style.innerHTML = `
+  const style = document.createElement("style");
+  style.innerHTML = `
     #custom-confirm-modal {
         display: none;
         position: fixed;
@@ -194,5 +197,5 @@ function showConfirmModal(message, onConfirm) {
         to { opacity: 1; transform: translateY(0); }
     }
     `;
-    document.head.appendChild(style);
-})(); 
+  document.head.appendChild(style);
+})();

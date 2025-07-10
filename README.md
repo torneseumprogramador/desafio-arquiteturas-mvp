@@ -18,6 +18,7 @@ O projeto demonstra a separação de responsabilidades em camadas bem definidas:
 - **Services**: Camada de acesso a dados (infraestrutura)
 
 ### 🎯 Objetivos do Projeto
+
 - Demonstrar aplicação prática dos conceitos de arquitetura de software
 - Implementar padrão MVP (Model-View-Presenter) de forma eficiente
 - Utilizar containerização para facilitar deploy e desenvolvimento
@@ -89,12 +90,14 @@ O projeto demonstra a separação de responsabilidades em camadas bem definidas:
 #### 🚀 Método Rápido (Recomendado)
 
 1. **Clone o repositório:**
+
    ```bash
    git clone <url-do-repositorio>
    cd desafio-arquiteturas-mvp
    ```
 
 2. **Execute o script de inicialização:**
+
    ```bash
    ./run.sh
    ```
@@ -109,12 +112,14 @@ O projeto demonstra a separação de responsabilidades em camadas bem definidas:
 #### 🔧 Método Manual
 
 1. **Clone o repositório:**
+
    ```bash
    git clone <url-do-repositorio>
    cd desafio-arquiteturas-mvp
    ```
 
 2. **Execute com Docker Compose:**
+
    ```bash
    docker-compose up --build
    ```
@@ -131,6 +136,7 @@ O projeto demonstra a separação de responsabilidades em camadas bem definidas:
 Este projeto está organizado em duas partes principais, cada uma com sua própria documentação:
 
 ### 🎯 MVP Frontend (`/mvp`)
+
 - **Padrão MVP**: Model-View-Presenter implementado no frontend
 - **Interface do Usuário**: Interface completa para gerenciar produtos
 - **Comunicação com API**: Se conecta exclusivamente com a API backend
@@ -138,6 +144,7 @@ Este projeto está organizado em duas partes principais, cada uma com sua própr
 - **📚 Documentação**: [`mvp/README.md`](mvp/README.md)
 
 ### 🔧 API Backend (`/src`)
+
 - **Clean Architecture**: Arquitetura limpa no backend
 - **API REST**: Endpoints para comunicação com o frontend
 - **Banco de Dados**: Persistência em MySQL
@@ -147,18 +154,21 @@ Este projeto está organizado em duas partes principais, cada uma com sua própr
 ## 🛠️ Tecnologias Utilizadas
 
 ### Frontend (MVP)
+
 - **HTML5**: Estrutura da página
 - **CSS3**: Estilização moderna e responsiva
 - **JavaScript**: Lógica da aplicação
 - **Padrão MVP**: Model-View-Presenter
 
 ### Backend (API)
+
 - **Node.js**: Runtime JavaScript
 - **Express.js**: Framework web
 - **MySQL**: Banco de dados relacional
 - **Clean Architecture**: Arquitetura limpa
 
 ### Infraestrutura
+
 - **Docker Compose**: Orquestração de containers
 - **MySQL 8.0**: Banco de dados
 - **phpMyAdmin**: Interface de administração do banco
@@ -167,6 +177,7 @@ Este projeto está organizado em duas partes principais, cada uma com sua própr
 ## 📊 Funcionalidades
 
 ### ✅ Implementadas
+
 - ✅ Cadastro de produtos
 - ✅ Listagem de produtos
 - ✅ Edição de produtos
@@ -180,6 +191,7 @@ Este projeto está organizado em duas partes principais, cada uma com sua própr
 - ✅ Verificações automáticas de ambiente
 
 ### 🔄 Funcionalidades da Arquitetura
+
 - **Separação de Responsabilidades**: Cada camada tem sua função específica
 - **Inversão de Dependência**: Presenter não depende diretamente da View
 - **Testabilidade**: Estrutura facilita testes unitários
@@ -190,6 +202,7 @@ Este projeto está organizado em duas partes principais, cada uma com sua própr
 ## 🗄️ Estrutura do Banco de Dados
 
 ### Tabela `produtos`
+
 ```sql
 CREATE TABLE produtos (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -205,6 +218,7 @@ CREATE TABLE produtos (
 ## 🔧 Configuração de Desenvolvimento
 
 ### Variáveis de Ambiente
+
 Crie um arquivo `.env` na raiz do projeto:
 
 ```env
@@ -279,6 +293,7 @@ A interface foi desenvolvida com foco na experiência do usuário:
 ## 🔍 API Endpoints
 
 ### Produtos
+
 - `GET /api/produtos` - Listar todos os produtos
 - `GET /api/produtos/:id` - Buscar produto por ID
 - `POST /api/produtos` - Criar novo produto
@@ -309,6 +324,7 @@ O projeto possui uma estrutura completa de testes com scripts automatizados para
 ### 📁 Scripts de Teste Disponíveis
 
 #### 🚀 Script Unificado (`test-all.sh`)
+
 Executa todos os testes do projeto (frontend + backend) com diferentes opções.
 
 ```bash
@@ -338,6 +354,7 @@ Executa todos os testes do projeto (frontend + backend) com diferentes opções.
 ```
 
 #### 🎨 Script Frontend (`test-frontend.sh`)
+
 Executa testes específicos do frontend MVP.
 
 ```bash
@@ -364,6 +381,7 @@ Executa testes específicos do frontend MVP.
 ```
 
 #### 🔧 Script Backend (`test-backend.sh`)
+
 Executa testes específicos do backend API.
 
 ```bash
@@ -392,12 +410,14 @@ Executa testes específicos do backend API.
 ### 🎯 Cobertura de Testes
 
 #### Frontend (MVP)
+
 - **Model**: 100% de cobertura
-- **Service**: 100% de cobertura  
+- **Service**: 100% de cobertura
 - **View**: 100% de cobertura
 - **Presenter**: 100% de cobertura
 
 #### Backend (Clean Architecture)
+
 - **Domain**: 100% de cobertura
 - **Application**: ~75% de cobertura
 - **Infrastructure**: Cobertura parcial
@@ -406,6 +426,7 @@ Executa testes específicos do backend API.
 ### 📊 Relatórios de Cobertura
 
 Os relatórios são gerados automaticamente na pasta `coverage/`:
+
 - `coverage/lcov-report/index.html` - Relatório HTML principal
 - `coverage/coverage-summary.json` - Resumo em JSON
 
@@ -429,6 +450,7 @@ test-coverage         # Com cobertura
 ### 📚 Documentação Completa
 
 Para mais detalhes sobre os scripts de teste, consulte:
+
 - **[scripts/README.md](scripts/README.md)** - Documentação completa dos scripts
 
 ## 🚀 Script de Automação
@@ -436,6 +458,7 @@ Para mais detalhes sobre os scripts de teste, consulte:
 O projeto inclui um script `run.sh` que facilita o gerenciamento da aplicação:
 
 ### Funcionalidades do Script:
+
 - ✅ **Verificações automáticas**: Docker, Docker Compose e portas disponíveis
 - ✅ **Interface colorida**: Mensagens informativas e de erro bem organizadas
 - ✅ **Comandos intuitivos**: start, stop, restart, logs, status, clean
@@ -443,6 +466,7 @@ O projeto inclui um script `run.sh` que facilita o gerenciamento da aplicação:
 - ✅ **Informações de acesso**: Mostra URLs e credenciais após iniciar
 
 ### Exemplo de Uso:
+
 ```bash
 # Iniciar aplicação
 ./run.sh
@@ -460,6 +484,7 @@ O projeto inclui um script `run.sh` que facilita o gerenciamento da aplicação:
 ## 📈 Próximos Passos
 
 ### Melhorias Sugeridas
+
 - [ ] Implementar autenticação de usuários
 - [ ] Adicionar upload de imagens para produtos
 - [ ] Implementar sistema de categorias
@@ -472,6 +497,7 @@ O projeto inclui um script `run.sh` que facilita o gerenciamento da aplicação:
 - [ ] Adicionar backup automático do banco
 
 ### 🎓 Aprendizados do Curso
+
 Este projeto demonstra a aplicação prática dos conceitos aprendidos no curso de **Arquiteturas de Software Modernas**:
 
 - **Padrões Arquiteturais**: MVP, Clean Architecture
@@ -481,6 +507,7 @@ Este projeto demonstra a aplicação prática dos conceitos aprendidos no curso 
 - **Boas Práticas**: Código limpo e organizado
 
 ### Funcionalidades Avançadas
+
 - [ ] Sistema de busca e filtros
 - [ ] Paginação de resultados
 - [ ] Exportação de dados (CSV, PDF)
@@ -500,9 +527,11 @@ Este projeto demonstra a aplicação prática dos conceitos aprendidos no curso 
 Este projeto possui documentação organizada por área:
 
 ### 📖 Documentação Principal
+
 - **[README.md](README.md)** - Esta documentação geral do projeto
 
 ### 🎯 Documentação do MVP Frontend
+
 - **[mvp/README.md](mvp/README.md)** - Documentação completa do MVP (Model-View-Presenter)
   - Arquitetura MVP
   - Funcionalidades da interface
@@ -510,6 +539,7 @@ Este projeto possui documentação organizada por área:
   - Desenvolvimento e extensão
 
 ### 🔧 Documentação da API Backend
+
 - **[src/README.md](src/README.md)** - Documentação completa da API (Clean Architecture)
   - Arquitetura Clean Architecture
   - Endpoints disponíveis
@@ -517,6 +547,7 @@ Este projeto possui documentação organizada por área:
   - Regras de negócio
 
 ### 📋 Documentação da API REST
+
 - **[src/README.md](src/README.md)** - Documentação completa da API (inclui todos os endpoints)
   - Todos os endpoints disponíveis
   - Exemplos de requisições e respostas
@@ -525,6 +556,7 @@ Este projeto possui documentação organizada por área:
   - Validações e tratamento de erros
 
 ### 🚀 Instruções de Execução
+
 - **[INSTRUCOES.md](INSTRUCOES.md)** - Guia rápido de execução
   - Como executar o projeto
   - Comandos úteis
@@ -535,6 +567,7 @@ Este projeto possui documentação organizada por área:
 Este projeto foi desenvolvido como parte do curso **Arquiteturas de Software Modernas** do [Tornese um Programador](https://www.torneseumprogramador.com.br/cursos/arquiteturas_software).
 
 ### 📚 O que você aprenderá no curso:
+
 - **Fundamentos de Arquitetura**: Componentes, comunicação e organização
 - **Padrões Arquiteturais**: Monolitos, microsserviços, eventos
 - **Clean Architecture**: Princípios de Robert C. Martin
@@ -543,6 +576,7 @@ Este projeto foi desenvolvido como parte do curso **Arquiteturas de Software Mod
 - **Boas Práticas**: Código limpo e manutenível
 
 ### 🔗 Links Úteis:
+
 - **Curso Completo**: [Arquiteturas de Software Modernas](https://www.torneseumprogramador.com.br/cursos/arquiteturas_software)
 - **Plataforma**: [Tornese um Programador](https://www.torneseumprogramador.com.br)
 - **Professor**: Danilo Aparecido
@@ -554,12 +588,14 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ## 👨‍💻 Autor
 
 **Danilo Aparecido**
+
 - **Professor e Desenvolvedor** especializado em Arquiteturas de Software
 - **Plataforma**: [Tornese um Programador](https://www.torneseumprogramador.com.br/cursos/arquiteturas_software)
 - **Especialidades**: Arquiteturas de Software Modernas, Padrões de Projeto, Clean Architecture
 - **Cursos**: Arquiteturas de Software, Desenvolvimento Web, Tecnologias Modernas
 
 ### Sobre o Autor
+
 Danilo Aparecido é um professor e desenvolvedor experiente que dedica-se ao ensino de arquiteturas de software modernas. Através da plataforma [Tornese um Programador](https://www.torneseumprogramador.com.br/cursos/arquiteturas_software), oferece cursos especializados em:
 
 - **Fundamentos de Arquitetura**: componentes, comunicação e organização de camadas
@@ -568,6 +604,7 @@ Danilo Aparecido é um professor e desenvolvedor experiente que dedica-se ao ens
 - **Ferramentas e Deploy**: uso de containers, CI/CD e monitoramento
 
 ### Curso de Arquiteturas de Software
+
 Este projeto MVP foi desenvolvido seguindo os princípios ensinados no curso de **Arquiteturas de Software Modernas** do [Tornese um Programador](https://www.torneseumprogramador.com.br/cursos/arquiteturas_software), aplicando:
 
 - ✅ **Padrão MVP** (Model-View-Presenter)
@@ -589,4 +626,4 @@ Este projeto MVP foi desenvolvido seguindo os princípios ensinados no curso de 
 **Plataforma**: [Tornese um Programador](https://www.torneseumprogramador.com.br)  
 **Curso**: [Arquiteturas de Software Modernas](https://www.torneseumprogramador.com.br/cursos/arquiteturas_software)
 
-> 💡 **Dica**: Este projeto é um exemplo prático dos conceitos ensinados no curso. Para aprofundar seus conhecimentos em arquiteturas de software, recomendamos o curso completo! 
+> 💡 **Dica**: Este projeto é um exemplo prático dos conceitos ensinados no curso. Para aprofundar seus conhecimentos em arquiteturas de software, recomendamos o curso completo!

@@ -32,6 +32,7 @@ mvp/
 ## 🚀 Funcionalidades
 
 ### ✅ Implementadas
+
 - ✅ Cadastrar produtos
 - ✅ Listar produtos
 - ✅ Editar produtos
@@ -43,6 +44,7 @@ mvp/
 - ✅ Comunicação com API REST
 
 ### 🎨 Interface do Usuário
+
 - **Design Responsivo**: Funciona em desktop, tablet e mobile
 - **Interface Moderna**: Gradientes e animações suaves
 - **Feedback Visual**: Mensagens de sucesso, erro e informação
@@ -52,6 +54,7 @@ mvp/
 ## 🔧 Como Funciona
 
 ### 1. Inicialização
+
 ```javascript
 // app.js inicializa todos os componentes
 const app = new App();
@@ -59,6 +62,7 @@ app.inicializar();
 ```
 
 ### 2. Fluxo de Dados
+
 ```
 User Action → View → Presenter → Service → API/Mock Data
      ↑                                    ↓
@@ -66,6 +70,7 @@ User Action → View → Presenter → Service → API/Mock Data
 ```
 
 ### 3. Comunicação com API
+
 - O `ProdutoService` se comunica exclusivamente com a API
 - Se a API não estiver disponível, mostra lista vazia
 - Mensagens de erro claras quando API não está disponível
@@ -73,22 +78,26 @@ User Action → View → Presenter → Service → API/Mock Data
 ## 📱 Uso da Interface
 
 ### Cadastrar Produto
+
 1. Preencha o formulário com os dados do produto
 2. Clique em "Cadastrar Produto"
 3. O produto será salvo e a lista atualizada
 
 ### Editar Produto
+
 1. Clique no botão "✏️ Editar" de um produto
 2. O formulário será preenchido com os dados
 3. Modifique os dados desejados
 4. Clique em "Atualizar Produto"
 
 ### Excluir Produto
+
 1. Clique no botão "🗑️ Excluir" de um produto
 2. Confirme a exclusão no diálogo
 3. O produto será removido da lista
 
 ### Cancelar Edição
+
 1. Durante a edição, clique em "Cancelar"
 2. O formulário será limpo e a edição cancelada
 
@@ -110,7 +119,7 @@ class Produto {
         // ... outros campos
         this.categoria = categoria;
     }
-    
+
     validar() {
         const erros = [];
         // ... outras validações
@@ -146,6 +155,7 @@ O MVP se comunica exclusivamente com a API:
 - **Comunicação Direta**: Sem fallbacks ou dados mock
 
 ### Endpoints Utilizados
+
 - `GET /api/produtos` - Listar produtos
 - `GET /api/produtos/:id` - Buscar produto
 - `POST /api/produtos` - Criar produto
@@ -165,4 +175,4 @@ O MVP se comunica exclusivamente com a API:
 Este MVP demonstra a aplicação prática dos conceitos do curso **Arquiteturas de Software Modernas** do [Tornese um Programador](https://www.torneseumprogramador.com.br/cursos/arquiteturas_software).
 
 **Professor**: Danilo Aparecido  
-**Plataforma**: [Tornese um Programador](https://www.torneseumprogramador.com.br) 
+**Plataforma**: [Tornese um Programador](https://www.torneseumprogramador.com.br)

@@ -4,17 +4,20 @@
 > **Professor**: Danilo Aparecido - [Tornese um Programador](https://www.torneseumprogramador.com.br/cursos/arquiteturas_software)
 
 ## Pré-requisitos
+
 - Docker instalado
 - Docker Compose instalado
 
 ## Passos para Executar
 
 1. **Clone o repositório e entre na pasta:**
+
    ```bash
    cd desafio-arquiteturas-mvp
    ```
 
 2. **Execute o projeto:**
+
    ```bash
    docker-compose up --build
    ```
@@ -110,6 +113,7 @@ O projeto segue os princípios da Clean Architecture, organizando o código em c
 - **Infrastructure**: Implementa as interfaces definidas no domínio
 
 ### 🎓 Conceitos Aplicados
+
 - **Clean Architecture**: Separação clara de responsabilidades
 - **SOLID**: Princípios aplicados em toda a estrutura
 - **Containerização**: Docker para facilitar deploy
@@ -118,16 +122,19 @@ O projeto segue os princípios da Clean Architecture, organizando o código em c
 ## Solução de Problemas
 
 ### Se o banco não conectar:
+
 - Aguarde alguns minutos para o MySQL inicializar
 - Verifique se a porta 3306 não está em uso
 - Use `docker-compose logs mysql` para ver logs do banco
 
 ### Se a aplicação não carregar:
+
 - Verifique se a porta 3000 não está em uso
 - Use `docker-compose logs app` para ver logs da aplicação
 - Tente `docker-compose restart app`
 
 ### Para limpar tudo e começar do zero:
+
 ```bash
 docker-compose down -v
 docker system prune -f
@@ -143,4 +150,4 @@ Este projeto demonstra a aplicação prática dos conceitos do curso **Arquitetu
 **Professor**: Danilo Aparecido  
 **Plataforma**: [Tornese um Programador](https://www.torneseumprogramador.com.br)
 
-> 💡 **Dica**: Para aprofundar seus conhecimentos em arquiteturas de software, recomendamos o curso completo! 
+> 💡 **Dica**: Para aprofundar seus conhecimentos em arquiteturas de software, recomendamos o curso completo!

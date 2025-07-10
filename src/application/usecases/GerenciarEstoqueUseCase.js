@@ -1,15 +1,15 @@
 class GerenciarEstoqueUseCase {
-    constructor(produtoService) {
-        this.produtoService = produtoService;
-    }
+  constructor(produtoService) {
+    this.produtoService = produtoService;
+  }
 
-    async atualizarEstoque(id, quantidade) {
-        return await this.produtoService.atualizarEstoque(id, quantidade);
-    }
+  async atualizarEstoque(id, quantidade) {
+    return await this.produtoService.atualizarEstoque(id, quantidade);
+  }
 
-    async aplicarDesconto(id, percentual) {
-        return await this.produtoService.aplicarDesconto(id, percentual);
-    }
+  async aplicarDesconto(id, percentual) {
+    return await this.produtoService.aplicarDesconto(id, percentual);
+  }
 }
 
-module.exports = GerenciarEstoqueUseCase; 
+module.exports = GerenciarEstoqueUseCase;

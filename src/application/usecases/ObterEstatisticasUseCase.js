@@ -1,11 +1,11 @@
 class ObterEstatisticasUseCase {
-    constructor(produtoService) {
-        this.produtoService = produtoService;
-    }
+  constructor(produtoService) {
+    this.produtoService = produtoService;
+  }
 
-    async executar() {
-        return await this.produtoService.obterEstatisticas();
-    }
+  async executar() {
+    return await this.produtoService.obterEstatisticas();
+  }
 }
 
-module.exports = ObterEstatisticasUseCase; 
+module.exports = ObterEstatisticasUseCase;

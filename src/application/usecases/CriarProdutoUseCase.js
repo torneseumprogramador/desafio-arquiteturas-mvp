@@ -1,11 +1,11 @@
 class CriarProdutoUseCase {
-    constructor(produtoService) {
-        this.produtoService = produtoService;
-    }
+  constructor(produtoService) {
+    this.produtoService = produtoService;
+  }
 
-    async executar(dados) {
-        return await this.produtoService.criarProduto(dados);
-    }
+  async executar(dados) {
+    return await this.produtoService.criarProduto(dados);
+  }
 }
 
-module.exports = CriarProdutoUseCase; 
+module.exports = CriarProdutoUseCase;

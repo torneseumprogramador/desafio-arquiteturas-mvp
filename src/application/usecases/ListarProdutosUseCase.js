@@ -1,9 +1,7 @@
 class ListarProdutosUseCase {
-    constructor(produtoService) {
-        this.produtoService = produtoService;
-    }
-
-    
+  constructor(produtoService) {
+    this.produtoService = produtoService;
+  }
 }
 
-module.exports = ListarProdutosUseCase; 
+module.exports = ListarProdutosUseCase;
