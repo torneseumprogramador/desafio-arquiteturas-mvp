@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const ProdutoPresenter = require('../../presenters/ProdutoPresenter.js');
 
 global.showConfirmModal = jest.fn((msg, cb) => cb && cb());
