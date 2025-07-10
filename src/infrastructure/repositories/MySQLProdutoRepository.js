@@ -11,7 +11,7 @@ class MySQLProdutoRepository extends IProdutoRepository {
     async listarTodos() {
         try {
             const query = `SELECT * FROM ${this.tableName} ORDER BY created_at DESC`;
-            const rows = await mysqlConnection.execute(query);
+            const [rows] = await mysqlConnection.execute(query);
             
             return rows.map(row => Produto.fromJSON(row));
         } catch (error) {
@@ -23,7 +23,7 @@ class MySQLProdutoRepository extends IProdutoRepository {
     async buscarPorId(id) {
         try {
             const query = `SELECT * FROM ${this.tableName} WHERE id = ?`;
-            const rows = await mysqlConnection.execute(query, [id]);
+            const [rows] = await mysqlConnection.execute(query, [id]);
             
             if (rows.length === 0) {
                 throw new Error('Produto não encontrado');
@@ -51,14 +51,13 @@ class MySQLProdutoRepository extends IProdutoRepository {
                 VALUES (?, ?, ?, ?, NOW(), NOW())
             `;
             
-            const result = await mysqlConnection.execute(query, [
+            const [result] = await mysqlConnection.execute(query, [
                 produto.nome,
                 produto.preco,
                 produto.descricao,
                 produto.quantidade
             ]);
             
-            // Buscar o produto criado
             return await this.buscarPorId(result.insertId);
         } catch (error) {
             console.error('Erro ao criar produto:', error);
@@ -79,7 +78,7 @@ class MySQLProdutoRepository extends IProdutoRepository {
                 WHERE id = ?
             `;
             
-            const result = await mysqlConnection.execute(query, [
+            const [result] = await mysqlConnection.execute(query, [
                 produto.nome,
                 produto.preco,
                 produto.descricao,
@@ -101,7 +100,7 @@ class MySQLProdutoRepository extends IProdutoRepository {
     async excluir(id) {
         try {
             const query = `DELETE FROM ${this.tableName} WHERE id = ?`;
-            const result = await mysqlConnection.execute(query, [id]);
+            const [result] = await mysqlConnection.execute(query, [id]);
             
             if (result.affectedRows === 0) {
                 throw new Error('Produto não encontrado');
@@ -117,7 +116,7 @@ class MySQLProdutoRepository extends IProdutoRepository {
     async buscarPorNome(nome) {
         try {
             const query = `SELECT * FROM ${this.tableName} WHERE nome LIKE ? ORDER BY nome`;
-            const rows = await mysqlConnection.execute(query, [`%${nome}%`]);
+            const [rows] = await mysqlConnection.execute(query, [`%${nome}%`]);
             
             return rows.map(row => Produto.fromJSON(row));
         } catch (error) {
@@ -129,7 +128,7 @@ class MySQLProdutoRepository extends IProdutoRepository {
     async buscarPorPreco(min, max) {
         try {
             const query = `SELECT * FROM ${this.tableName} WHERE preco BETWEEN ? AND ? ORDER BY preco`;
-            const rows = await mysqlConnection.execute(query, [min, max]);
+            const [rows] = await mysqlConnection.execute(query, [min, max]);
             
             return rows.map(row => Produto.fromJSON(row));
         } catch (error) {
@@ -141,7 +140,7 @@ class MySQLProdutoRepository extends IProdutoRepository {
     async contarTotal() {
         try {
             const query = `SELECT COUNT(*) as total FROM ${this.tableName}`;
-            const rows = await mysqlConnection.execute(query);
+            const [rows] = await mysqlConnection.execute(query);
             
             return rows[0].total;
         } catch (error) {

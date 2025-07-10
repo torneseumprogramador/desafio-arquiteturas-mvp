@@ -131,7 +131,7 @@ class ProdutoPresenter {
      * @param {number} id - ID do produto
      */
     async excluirProduto(id) {
-        if (confirm('Tem certeza que deseja excluir este produto?')) {
+        showConfirmModal('Tem certeza que deseja excluir este produto?', async () => {
             try {
                 this.view.setCarregando(true);
                 await this.service.excluirProduto(id);
@@ -142,7 +142,7 @@ class ProdutoPresenter {
             } finally {
                 this.view.setCarregando(false);
             }
-        }
+        });
     }
 
     /**

@@ -2,44 +2,51 @@ const mysql = require('mysql2/promise');
 
 class MySQLConnection {
     constructor() {
-        this.connection = null;
+        this.pool = null;
         this.config = {
             host: process.env.DB_HOST || 'mysql',
             port: process.env.DB_PORT || 3306,
             user: process.env.DB_USER || 'root',
             password: process.env.DB_PASSWORD || 'password',
-            database: process.env.DB_NAME || 'produtos_db'
+            database: process.env.DB_NAME || 'produtos_db',
+            waitForConnections: true,
+            connectionLimit: 10,
+            queueLimit: 0
         };
     }
 
     async connect() {
+        if (this.pool) return; // já conectado
+        
         const maxRetries = 30;
-        const retryDelay = 2000; // 2 segundos
+        const retryDelay = 1000; // 1 segundo
         
         for (let attempt = 1; attempt <= maxRetries; attempt++) {
             try {
                 console.log(`🔄 Tentativa ${attempt}/${maxRetries} de conectar ao MySQL...`);
                 
-                // Primeiro, conectar sem especificar o banco para criá-lo se não existir
-                const tempConfig = { ...this.config };
-                delete tempConfig.database;
+                // Criar pool
+                this.pool = mysql.createPool(this.config);
                 
-                const tempConnection = await mysql.createConnection(tempConfig);
+                // Testar conexão
+                await this.testConnection();
                 
-                // Criar banco de dados se não existir
-                await tempConnection.execute(`CREATE DATABASE IF NOT EXISTS ${this.config.database}`);
-                await tempConnection.end();
-                
-                // Conectar ao banco específico
-                this.connection = await mysql.createConnection(this.config);
-                
-                console.log('✅ Conectado ao MySQL com sucesso');
+                console.log('✅ Pool de conexões MySQL criado com sucesso');
                 return;
             } catch (error) {
                 console.log(`❌ Tentativa ${attempt} falhou: ${error.message}`);
                 
+                if (this.pool) {
+                    try {
+                        await this.pool.end();
+                    } catch (endError) {
+                        // Ignorar erro ao fechar pool
+                    }
+                    this.pool = null;
+                }
+                
                 if (attempt === maxRetries) {
-                    console.error('❌ Erro ao conectar ao MySQL após todas as tentativas:', error);
+                    console.error('❌ Erro ao criar pool MySQL:', error);
                     throw error;
                 }
                 
@@ -49,26 +56,34 @@ class MySQLConnection {
         }
     }
 
+    async testConnection() {
+        if (!this.pool) {
+            throw new Error('Pool não inicializado');
+        }
+        
+        // Testar com uma query simples
+        await this.pool.execute('SELECT 1');
+    }
+
     async disconnect() {
         try {
-            if (this.connection) {
-                await this.connection.end();
-                console.log('🔌 Desconectado do MySQL');
+            if (this.pool) {
+                await this.pool.end();
+                this.pool = null;
+                console.log('🔌 Pool de conexões MySQL fechado');
             }
         } catch (error) {
-            console.error('❌ Erro ao desconectar do MySQL:', error);
+            console.error('❌ Erro ao fechar pool MySQL:', error);
             throw error;
         }
     }
 
     async execute(query, params = []) {
         try {
-            if (!this.connection) {
-                throw new Error('Conexão com MySQL não estabelecida');
+            if (!this.pool) {
+                throw new Error('Pool MySQL não inicializado');
             }
-            
-            const [rows] = await this.connection.execute(query, params);
-            return rows;
+            return await this.pool.execute(query, params);
         } catch (error) {
             console.error('❌ Erro ao executar query:', error);
             throw error;
@@ -77,11 +92,10 @@ class MySQLConnection {
 
     async query(query, params = []) {
         try {
-            if (!this.connection) {
-                throw new Error('Conexão com MySQL não estabelecida');
+            if (!this.pool) {
+                throw new Error('Pool MySQL não inicializado');
             }
-            
-            const [rows] = await this.connection.query(query, params);
+            const [rows] = await this.pool.query(query, params);
             return rows;
         } catch (error) {
             console.error('❌ Erro ao executar query:', error);
@@ -90,46 +104,20 @@ class MySQLConnection {
     }
 
     async beginTransaction() {
-        try {
-            if (!this.connection) {
-                throw new Error('Conexão com MySQL não estabelecida');
-            }
-            
-            await this.connection.beginTransaction();
-        } catch (error) {
-            console.error('❌ Erro ao iniciar transação:', error);
-            throw error;
-        }
+        // Não implementado para pool (usar transações diretamente nas conexões do pool se necessário)
+        throw new Error('Transações devem ser feitas em conexões individuais do pool');
     }
 
     async commit() {
-        try {
-            if (!this.connection) {
-                throw new Error('Conexão com MySQL não estabelecida');
-            }
-            
-            await this.connection.commit();
-        } catch (error) {
-            console.error('❌ Erro ao fazer commit:', error);
-            throw error;
-        }
+        throw new Error('Transações devem ser feitas em conexões individuais do pool');
     }
 
     async rollback() {
-        try {
-            if (!this.connection) {
-                throw new Error('Conexão com MySQL não estabelecida');
-            }
-            
-            await this.connection.rollback();
-        } catch (error) {
-            console.error('❌ Erro ao fazer rollback:', error);
-            throw error;
-        }
+        throw new Error('Transações devem ser feitas em conexões individuais do pool');
     }
 
     isConnected() {
-        return this.connection !== null;
+        return this.pool !== null;
     }
 }
 

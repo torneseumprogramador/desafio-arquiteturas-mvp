@@ -39,7 +39,7 @@ class DatabaseInitializer {
 
     static async insertSampleDataIfEmpty() {
         try {
-            const rows = await mysqlConnection.execute('SELECT COUNT(*) as count FROM produtos');
+            const [rows] = await mysqlConnection.execute('SELECT COUNT(*) as count FROM produtos');
             console.log('[DEBUG] Resultado do COUNT:', rows);
             if (Array.isArray(rows) && rows.length > 0 && rows[0].count === 0) {
                 await this.insertSampleData();
