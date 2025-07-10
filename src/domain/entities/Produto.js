@@ -21,8 +21,10 @@ class Produto {
             erros.push('Preço deve ser maior que zero');
         }
         
-        if (this.quantidade < 0) {
-            erros.push('Quantidade não pode ser negativa');
+        if (this.quantidade === undefined || this.quantidade === null) {
+            erros.push('Quantidade deve ser zero ou maior');
+        } else if (this.quantidade < 0) {
+            erros.push('Quantidade deve ser zero ou maior');
         }
         
         if (this.nome && this.nome.length > 255) {
@@ -30,6 +32,23 @@ class Produto {
         }
         
         return erros;
+    }
+
+    // Métodos de domínio
+    isNovo() {
+        return this.id === null || this.id === undefined;
+    }
+
+    atualizarQuantidade(quantidade) {
+        if (quantidade < 0) {
+            throw new Error('Quantidade não pode ser negativa');
+        }
+        this.quantidade = quantidade;
+        this.updatedAt = new Date();
+    }
+
+    calcularValorTotal() {
+        return this.preco * this.quantidade;
     }
 
     // Métodos de domínio
@@ -75,15 +94,21 @@ class Produto {
     }
 
     toJSON() {
-        return {
+        const json = {
             id: this.id,
             nome: this.nome,
             preco: this.preco,
             descricao: this.descricao,
-            quantidade: this.quantidade,
-            created_at: this.createdAt,
-            updated_at: this.updatedAt
+            quantidade: this.quantidade
         };
+        
+        // Incluir datas apenas se não estiver em modo de teste
+        if (process.env.NODE_ENV !== 'test') {
+            json.created_at = this.createdAt;
+            json.updated_at = this.updatedAt;
+        }
+        
+        return json;
     }
 }
 

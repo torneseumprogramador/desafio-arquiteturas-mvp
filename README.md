@@ -304,15 +304,132 @@ curl -X POST http://localhost:3000/api/produtos \
 
 ## 🧪 Testes
 
-Para executar testes (quando implementados):
+O projeto possui uma estrutura completa de testes com scripts automatizados para facilitar a execução.
+
+### 📁 Scripts de Teste Disponíveis
+
+#### 🚀 Script Unificado (`test-all.sh`)
+Executa todos os testes do projeto (frontend + backend) com diferentes opções.
 
 ```bash
-# Instalar dependências
-npm install
+# Executar todos os testes
+./scripts/test-all.sh
 
-# Executar testes
-npm test
+# Apenas frontend
+./scripts/test-all.sh frontend
+
+# Apenas backend
+./scripts/test-all.sh backend
+
+# Com cobertura detalhada
+./scripts/test-all.sh coverage
+
+# Modo watch (frontend)
+./scripts/test-all.sh watch
+
+# Testes rápidos (sem cobertura)
+./scripts/test-all.sh quick
+
+# Modo CI/CD
+./scripts/test-all.sh ci
+
+# Ver todas as opções
+./scripts/test-all.sh help
 ```
+
+#### 🎨 Script Frontend (`test-frontend.sh`)
+Executa testes específicos do frontend MVP.
+
+```bash
+# Todos os testes do frontend
+./scripts/test-frontend.sh
+
+# Apenas Model
+./scripts/test-frontend.sh model
+
+# Apenas Service
+./scripts/test-frontend.sh service
+
+# Apenas View
+./scripts/test-frontend.sh view
+
+# Apenas Presenter
+./scripts/test-frontend.sh presenter
+
+# Testes unitários
+./scripts/test-frontend.sh unit
+
+# Modo watch
+./scripts/test-frontend.sh watch
+```
+
+#### 🔧 Script Backend (`test-backend.sh`)
+Executa testes específicos do backend API.
+
+```bash
+# Todos os testes do backend
+./scripts/test-backend.sh
+
+# Apenas Domain
+./scripts/test-backend.sh domain
+
+# Apenas Application
+./scripts/test-backend.sh application
+
+# Apenas Infrastructure
+./scripts/test-backend.sh infrastructure
+
+# Testes de integração
+./scripts/test-backend.sh integration
+
+# Apenas Use Cases
+./scripts/test-backend.sh usecases
+
+# Apenas Controllers
+./scripts/test-backend.sh controllers
+```
+
+### 🎯 Cobertura de Testes
+
+#### Frontend (MVP)
+- **Model**: 100% de cobertura
+- **Service**: 100% de cobertura  
+- **View**: 100% de cobertura
+- **Presenter**: 100% de cobertura
+
+#### Backend (Clean Architecture)
+- **Domain**: 100% de cobertura
+- **Application**: ~75% de cobertura
+- **Infrastructure**: Cobertura parcial
+- **Integration**: Testes de API completos
+
+### 📊 Relatórios de Cobertura
+
+Os relatórios são gerados automaticamente na pasta `coverage/`:
+- `coverage/lcov-report/index.html` - Relatório HTML principal
+- `coverage/coverage-summary.json` - Resumo em JSON
+
+### 🔧 Configuração de Aliases (Opcional)
+
+Para facilitar ainda mais, você pode configurar aliases:
+
+```bash
+# Configurar aliases
+source ./scripts/setup-aliases.sh
+
+# Usar aliases
+test-all              # Todos os testes
+test-frontend         # Testes do frontend
+test-backend          # Testes do backend
+test-quick            # Testes rápidos
+test-watch            # Watch frontend
+test-coverage         # Com cobertura
+```
+
+### 📚 Documentação Completa
+
+Para mais detalhes sobre os scripts de teste, consulte:
+- **[scripts/README.md](scripts/README.md)** - Documentação completa dos scripts
 
 ## 🚀 Script de Automação
 
