@@ -40,4 +40,9 @@ describe('Produto Model', () => {
     expect(produto).toBeInstanceOf(Produto);
     expect(produto.nome).toBe('Teclado');
   });
+
+  it('deve exportar Produto via CommonJS', () => {
+    const mod = require('../../models/Produto.js');
+    expect(typeof mod).toBe('function');
+  });
 }); 

@@ -13,6 +13,7 @@ class ProdutoView {
      * Configura os event listeners da view
      */
     setupEventListeners() {
+        if (!this.form) return;
         this.form.addEventListener('submit', (e) => {
             e.preventDefault();
             const formData = new FormData(this.form);
@@ -91,17 +92,21 @@ class ProdutoView {
      * @param {Object} produto - Dados do produto
      */
     preencherFormulario(produto) {
-        document.getElementById('nome').value = produto.nome;
-        document.getElementById('preco').value = produto.preco;
-        document.getElementById('descricao').value = produto.descricao;
-        document.getElementById('quantidade').value = produto.quantidade;
+        const nome = document.getElementById('nome');
+        const preco = document.getElementById('preco');
+        const descricao = document.getElementById('descricao');
+        const quantidade = document.getElementById('quantidade');
+        if (nome) nome.value = produto.nome;
+        if (preco) preco.value = produto.preco;
+        if (descricao) descricao.value = produto.descricao;
+        if (quantidade) quantidade.value = produto.quantidade;
     }
 
     /**
      * Limpa o formulário
      */
     limparFormulario() {
-        this.form.reset();
+        if (this.form) this.form.reset();
     }
 
     /**
@@ -109,6 +114,7 @@ class ProdutoView {
      * @param {boolean} habilitado - Se o formulário deve estar habilitado
      */
     setFormularioHabilitado(habilitado) {
+        if (!this.form) return;
         const inputs = this.form.querySelectorAll('input, textarea, button[type="submit"]');
         inputs.forEach(input => {
             input.disabled = !habilitado;

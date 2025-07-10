@@ -54,4 +54,52 @@ describe('ProdutoService', () => {
     fetch.mockResolvedValueOnce({ ok: false });
     await expect(service.criarProduto({ nome: 'Falha' })).rejects.toThrow('Erro ao criar produto');
   });
+
+  it('deve lançar erro ao criar produto por erro de rede', async () => {
+    fetch.mockRejectedValueOnce(new Error('Network error'));
+    await expect(service.criarProduto({ nome: 'Falha' })).rejects.toThrow('Erro ao criar produto');
+  });
+
+  it('deve listar produtos com sucesso', async () => {
+    fetch.mockResolvedValueOnce({ ok: true, json: async () => ([{ id: 1 }]) });
+    const produtos = await service.listarProdutos();
+    expect(produtos).toEqual([{ id: 1 }]);
+  });
+
+  it('deve retornar lista vazia se listarProdutos não ok', async () => {
+    fetch.mockResolvedValueOnce({ ok: false });
+    const produtos = await service.listarProdutos();
+    expect(produtos).toEqual([]);
+  });
+
+  it('deve retornar lista vazia se listarProdutos der erro', async () => {
+    fetch.mockRejectedValueOnce(new Error('Network error'));
+    const produtos = await service.listarProdutos();
+    expect(produtos).toEqual([]);
+  });
+
+  it('deve lançar erro ao atualizar produto com falha', async () => {
+    fetch.mockResolvedValueOnce({ ok: false });
+    await expect(service.atualizarProduto(1, { nome: 'X' })).rejects.toThrow('Erro ao atualizar produto');
+  });
+
+  it('deve lançar erro ao atualizar produto por erro de rede', async () => {
+    fetch.mockRejectedValueOnce(new Error('Network error'));
+    await expect(service.atualizarProduto(1, { nome: 'X' })).rejects.toThrow('Erro ao atualizar produto');
+  });
+
+  it('deve lançar erro ao excluir produto com falha', async () => {
+    fetch.mockResolvedValueOnce({ ok: false });
+    await expect(service.excluirProduto(1)).rejects.toThrow('Erro ao excluir produto');
+  });
+
+  it('deve lançar erro ao excluir produto por erro de rede', async () => {
+    fetch.mockRejectedValueOnce(new Error('Network error'));
+    await expect(service.excluirProduto(1)).rejects.toThrow('Erro ao excluir produto');
+  });
+
+  it('deve exportar ProdutoService via CommonJS', () => {
+    const mod = require('../../services/ProdutoService.js');
+    expect(typeof mod).toBe('function');
+  });
 }); 
